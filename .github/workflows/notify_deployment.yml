@@ -1,6 +1,7 @@
-name: Deploy
+name: Deployment notification
 
-on: deployment_status
+on:
+  deployment_status:
 
 jobs:
   notify:

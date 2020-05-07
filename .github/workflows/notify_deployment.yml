@@ -16,7 +16,7 @@ jobs:
         env:
           SLACK_TITLE: "Starting deploy 🚀"
           SLACK_MESSAGE: |
-            The deployment of ${{ github.event.deployment.ref }} to ${{ github.event.deployment.environment }} has started!
+            The deployment of `${{ github.event.deployment.ref }}` to `${{ github.event.deployment.environment }}` has started!
             You can watch the CI logs <${{ github.event.repository.html_url }}/commit/${{ github.event.deployment.sha }}/checks|here>.
       - name: Notify success
         uses: bryan-nice/slack-notification@master
@@ -24,14 +24,13 @@ jobs:
         env:
           SLACK_TITLE: "Deploy success! 🎉"
           SLACK_MESSAGE: |
-            ${{ github.event.deployment.ref }} was successfully deployed to ${{ github.event.deployment.environment }}!
-            You can click <${{ github.event.deployment_status.target_url }}|here> to access the deployed version
-            or click <${{ github.event.repository.html_url }}/commit/${{ github.event.deployment.sha }}/checks|here> to see the logs.
+            `${{ github.event.deployment.ref }}` was successfully deployed to `${{ github.event.deployment.environment }}`!
+            You can click <${{ github.event.deployment_status.target_url }}|here> to access the deployed version or click <${{ github.event.repository.html_url }}/commit/${{ github.event.deployment.sha }}/checks|here> to see the logs.
       - name: Notify failure
         uses: bryan-nice/slack-notification@master
         if: github.event.deployment_status.state == 'failure'
         env:
           SLACK_TITLE: "Deploy failed! 😬"
           SLACK_MESSAGE: |
-            ${{ github.event.deployment.ref }} was not deployed to ${{ github.event.deployment.environment }}.
+            `${{ github.event.deployment.ref }}` was not deployed to `${{ github.event.deployment.environment }}`.
             You see the CI logs <${{ github.event.repository.html_url }}/commit/${{ github.event.deployment.sha }}/checks|here>.

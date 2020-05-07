@@ -6,13 +6,9 @@ on:
 
 jobs:
   deploy:
-    name: Build and deploy
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.client_payload.ref }}
       - uses: chrnorm/deployment-action@releases/v1
         name: Create GitHub deployment
         id: deployment
@@ -21,10 +17,21 @@ jobs:
           target_url: https://my-app-url.com
           environment: ${{ github.event.client_payload.environment }}
           ref: ${{ github.event.client_payload.ref }}
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.client_payload.ref }}
+      - name: Restore cache
+        uses: actions/cache@master
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
       - name: Deploy
-        env:
-          ENV: ${{ github.event.client_payload.environment }}
-        run: sleep 5 && echo "Deployed to $ENV"
+        run: yarn deploy --env ${{ github.event.client_payload.environment }}
       - name: Update deployment status (success)
         if: success()
         uses: chrnorm/deployment-status@releases/v1

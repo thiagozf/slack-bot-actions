@@ -1,0 +1,30 @@
+{
+  "name": "root",
+  "private": true,
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "bugs": {
+    "url": "https://github.com/thiagozf/slack-bot-actions/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thiagozf/slack-bot-actions.git"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "test": "lerna run test -- --coverage",
+    "build": "lerna run build",
+    "deploy": "echo \"Deployed :)\"",
+    "release": "lerna version"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lerna": "^3.20.2"
+  }
+}

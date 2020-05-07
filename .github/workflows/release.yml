@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  repository_dispatch:
+    types: release
+
+jobs:
+  deploy:
+    name: Release a new version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Restore cache
+        uses: actions/cache@master
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+      - name: Release
+        env:
+          GH_TOKEN: ${{ secrets.PAT }}
+        run: |
+          git config --local user.email "hi+github@thiagozf.com"
+          git config --local user.name "Thiago Zanivan"
+          yarn release

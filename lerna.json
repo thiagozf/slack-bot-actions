@@ -1,0 +1,21 @@
+{
+  "useWorkspaces": true,
+  "packages": ["packages/*"],
+  "version": "0.0.0",
+  "npmClient": "yarn",
+  "command": {
+    "version": {
+      "preid": "next",
+      "ignoreChanges": ["**/__tests__/**", "lerna.json"],
+      "allowBranch": ["master", "stable"],
+      "conventionalCommits": true,
+      "createRelease": "github",
+      "commitHooks": false,
+      "message": "chore(release): New release :rocket:"
+    },
+    "publish": {
+      "conventionalCommits": true,
+      "contents": "dist"
+    }
+  }
+}

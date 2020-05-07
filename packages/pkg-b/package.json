@@ -1,0 +1,19 @@
+{
+  "name": "pkg-b",
+  "version": "0.2.0-next.0",
+  "description": "> TODO: description",
+  "author": "Thiago Zanivan <hi+github@thiagozf.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/pkg-b.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Tests OK!\" && exit 0"
+  }
+}

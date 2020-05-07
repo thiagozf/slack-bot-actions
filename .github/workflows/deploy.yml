@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    name: Build and Deploy
+    name: Build and deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -54,10 +54,10 @@ jobs:
         if: needs.deploy.result == 'success'
         env:
           SLACK_TITLE: "Deploy success! 🎉"
-          SLACK_MESSAGE: "{{ github.event.client_payload.ref }} was successfully deployed to {{ github.event.client_payload.environment }}"
+          SLACK_MESSAGE: "${{ github.event.client_payload.ref }} was successfully deployed to ${{ github.event.client_payload.environment }}"
       - name: Notify failure
         uses: bryan-nice/slack-notification@master
         if: needs.deploy.result == 'failure'
         env:
           SLACK_TITLE: "Deploy failed! 😬"
-          SLACK_MESSAGE: "{{ github.event.client_payload.ref }} was not deployed to {{ github.event.client_payload.environment }}"
+          SLACK_MESSAGE: "${{ github.event.client_payload.ref }} was not deployed to ${{ github.event.client_payload.environment }}"

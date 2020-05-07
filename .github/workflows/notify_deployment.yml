@@ -27,8 +27,6 @@ jobs:
             ${{ github.event.deployment.ref }} was successfully deployed to ${{ github.event.deployment.environment }}!
             You can click <${{ github.event.deployment_status.target_url }}|here> to access the deployed version
             or click <${{ github.event.repository.html_url }}/commit/${{ github.event.deployment.sha }}/checks|here> to see the logs.
-      
-      pending
       - name: Notify failure
         uses: bryan-nice/slack-notification@master
         if: github.event.deployment_status.state == 'failure'

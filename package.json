@@ -20,7 +20,7 @@
     "test": "lerna run test -- --coverage",
     "build": "lerna run build",
     "deploy": "echo \"Deployed :)\"",
-    "release": "lerna version"
+    "release": "lerna version --yes"
   },
   "author": "",
   "license": "ISC",

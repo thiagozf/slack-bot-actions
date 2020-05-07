@@ -30,6 +30,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           state: "success"
+          target_url: https://my-app-url.com
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
       - name: Update deployment status (failure)
         if: failure()

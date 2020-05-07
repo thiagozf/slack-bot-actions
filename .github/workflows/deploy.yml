@@ -20,6 +20,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           target_url: https://my-app-url.com
           environment: ${{ github.event.client_payload.environment }}
+          ref: ${{ github.event.client_payload.ref }}
       - name: Deploy
         env:
           ENV: ${{ github.event.client_payload.environment }}

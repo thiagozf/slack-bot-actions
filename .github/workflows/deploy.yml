@@ -10,24 +10,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+        ref: ${{ github.event.client_payload.ref }}
       - uses: chrnorm/deployment-action@releases/v1
         name: Create GitHub deployment
         id: deployment
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           target_url: https://my-app-url.com
-          environment: prod
+          environment: ${{ github.event.client_payload.environment }}
       - name: Deploy
         env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+          ENV: ${{ github.event.client_payload.environment }}
+        run: echo "Deployed to $ENV"
       - name: Update deployment status (success)
         if: success()
         uses: chrnorm/deployment-status@releases/v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          target_url: http://my-app-url.com
           state: "success"
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
       - name: Update deployment status (failure)
@@ -35,6 +35,5 @@ jobs:
         uses: chrnorm/deployment-status@releases/v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          target_url: https://my-app-url.com
           state: "failure"
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}

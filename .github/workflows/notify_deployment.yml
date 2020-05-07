@@ -1,4 +1,4 @@
-name: Notifications
+name: Notification
 
 on: deployment_status
 
@@ -10,7 +10,17 @@ jobs:
       SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
       SLACK_CHANNEL: ci
     steps:
-      - name: Test event
+      - name: Notify success
+        uses: bryan-nice/slack-notification@master
+        if: github.event.deployment_status.state == 'success'
         env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+          SLACK_TITLE: "Deploy success! 🎉"
+          SLACK_MESSAGE: |
+            ${{ github.event.deployment.ref }} was successfully deployed to ${{ github.event.deployment.environment }}!
+            You can <${{ github.event.deployment_status.target_url }}|🔗 click here> to access the deployed version.
+      - name: Notify failure
+        uses: bryan-nice/slack-notification@master
+        if: github.event.deployment_status.state != 'success'
+        env:
+          SLACK_TITLE: "Deploy failed! 😬"
+          SLACK_MESSAGE: "${{ github.event.deployment.ref }} was not deployed to ${{ github.event.deployment.environment }}"

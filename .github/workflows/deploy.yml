@@ -24,7 +24,7 @@ jobs:
       - name: Deploy
         env:
           ENV: ${{ github.event.client_payload.environment }}
-        run: echo "Deployed to $ENV"
+        run: sleep 5 && echo "Deployed to $ENV"
       - name: Update deployment status (success)
         if: success()
         uses: chrnorm/deployment-status@releases/v1

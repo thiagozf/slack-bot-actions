@@ -1,7 +1,6 @@
-name: Deployment notification
+name: Notifications
 
-on:
-  deployment_status:
+on: deployment_status
 
 jobs:
   notify:
@@ -15,15 +14,3 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      # - name: Notify success
-      #   uses: bryan-nice/slack-notification@master
-      #   if: needs.deploy.result == 'success'
-      #   env:
-      #     SLACK_TITLE: "Deploy success! 🎉"
-      #     SLACK_MESSAGE: "${{ github.event.client_payload.ref }} was successfully deployed to ${{ github.event.client_payload.environment }}"
-      # - name: Notify failure
-      #   uses: bryan-nice/slack-notification@master
-      #   if: needs.deploy.result == 'failure'
-      #   env:
-      #     SLACK_TITLE: "Deploy failed! 😬"
-      #     SLACK_MESSAGE: "${{ github.event.client_payload.ref }} was not deployed to ${{ github.event.client_payload.environment }}"

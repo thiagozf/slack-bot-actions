@@ -20,7 +20,7 @@
     "test": "lerna run test -- --coverage",
     "build": "lerna run build",
     "deploy": "echo \"Deployed :)\"",
-    "release": "lerna version --conventional-commits --conventional-graduate --yes"
+    "release": "lerna version --conventional-commits --yes"
   },
   "author": "",
   "license": "ISC",

@@ -13,7 +13,10 @@ jobs:
       SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
       SLACK_CHANNEL: ci
     steps:
-      - name: Dump GitHub context
+      - name: Notify release
+        uses: bryan-nice/slack-notification@master
         env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+          SLACK_TITLE: |
+            Version <${{ github.event.release.html_url }}|`${{ github.event.release.tag_name }}`> was released 🚀
+          SLACK_MESSAGE: |
+            ${{ github.event.release.body }}

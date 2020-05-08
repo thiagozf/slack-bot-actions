@@ -2,4 +2,6 @@
 
 module.exports = pkgB;
 
-function pkgB() {}
+function pkgB() {
+  console.log("B");
+}

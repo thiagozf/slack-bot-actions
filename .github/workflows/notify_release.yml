@@ -16,7 +16,9 @@ jobs:
       - name: Notify release
         uses: bryan-nice/slack-notification@master
         env:
-          SLACK_TITLE: |
-            Version <${{ github.event.release.html_url }}|`${{ github.event.release.tag_name }}`> was released 🚀
+          SLACK_TITLE: ${{ github.event.release.tag_name }}
           SLACK_MESSAGE: |
+            Version <${{ github.event.release.html_url }}|`${{ github.event.release.tag_name }}`> was released 🚀
+            ```markdown
             ${{ github.event.release.body }}
+            ```

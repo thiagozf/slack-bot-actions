@@ -3,5 +3,5 @@
 module.exports = pkgB;
 
 function pkgB() {
-  console.log("B");
+  console.log("B2");
 }

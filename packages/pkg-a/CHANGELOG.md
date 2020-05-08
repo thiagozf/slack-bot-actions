@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thiagozf/slack-bot-actions/compare/v0.2.1...v0.3.0) (2020-05-08)
+
+
+### Features
+
+* A random feature ([3c34c1c](https://github.com/thiagozf/slack-bot-actions/commit/3c34c1cb9e7c047636e0b92d34951c65adb3b885))
+
+
+
+
+
 ## [0.2.1](https://github.com/thiagozf/slack-bot-actions/compare/v0.2.0...v0.2.1) (2020-05-08)
 
 **Note:** Version bump only for package pkg-a

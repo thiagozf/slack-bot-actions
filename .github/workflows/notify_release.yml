@@ -1,8 +1,9 @@
 name: Notification
 
-release:
-  types:
-    - created
+on:
+  release:
+    types:
+      - created
 
 jobs:
   notify:
